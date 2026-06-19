@@ -8,9 +8,12 @@ const api = axios.create({
   timeout: 30000,
 });
 
-// Request interceptor — attach JWT token
+// Request interceptor — attach JWT token and set dynamic base URL
 api.interceptors.request.use(
   (config) => {
+    const savedUrl = localStorage.getItem('VITE_API_URL');
+    config.baseURL = savedUrl || import.meta.env.VITE_API_URL || 'http://localhost:8080/api/v1';
+
     const token = localStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
