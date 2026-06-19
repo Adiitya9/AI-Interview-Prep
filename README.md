@@ -1,4 +1,4 @@
-# 🚀 AI-Powered Interview Preparation Platform
+#  AI-Powered Interview Preparation Platform
 
 <div align="center">
 
@@ -440,16 +440,9 @@ interview-prep-platform/
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License.
-
 ---
 
 <div align="center">
 
-**Built with ❤️ for developers preparing for technical interviews**
-
-⭐ Star this repo if you find it helpful!
 
 </div>
