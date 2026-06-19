@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+target/
+
+# Build outputs
+dist/
+*.jar
+*.war
+*.class
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Misc
+*.swp
+*.swo
+*~

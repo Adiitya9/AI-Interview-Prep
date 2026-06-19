@@ -1,0 +1,50 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: interview-prep-backend
+  datasource:
+    url: jdbc:mysql://localhost:3306/interview_prep_db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  threads:
+    virtual:
+      enabled: true
+
+jwt:
+  secret: ${JWT_SECRET:bXlTZWNyZXRLZXkyMDI0SW50ZXJ2aWV3UHJlcFBsYXRmb3JtU2VjdXJlS2V5VGhhdElzTG9uZ0Vub3VnaEZvckhTNTEy}
+  expiration: 86400000
+
+ai:
+  provider: ${AI_PROVIDER:gemini}
+  gemini:
+    api-key: ${GEMINI_API_KEY:your-gemini-api-key}
+    model: gemini-2.0-flash
+    url: https://generativelanguage.googleapis.com/v1beta
+  openai:
+    api-key: ${OPENAI_API_KEY:your-openai-api-key}
+    model: gpt-4o-mini
+    base-url: https://api.openai.com/v1
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha

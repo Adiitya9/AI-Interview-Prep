@@ -1,0 +1,61 @@
+# Dev Profile - Uses H2 in-memory database (no Docker/MySQL needed)
+server:
+  port: 8080
+
+spring:
+  application:
+    name: interview-prep-backend
+  datasource:
+    url: jdbc:h2:mem:interview_prep_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        globally_quoted_identifiers: true
+        format_sql: true
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  threads:
+    virtual:
+      enabled: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.tool.schema: DEBUG
+
+jwt:
+  secret: bXlTZWNyZXRLZXkyMDI0SW50ZXJ2aWV3UHJlcFBsYXRmb3JtU2VjdXJlS2V5VGhhdElzTG9uZ0Vub3VnaEZvckhTNTEy
+  expiration: 86400000
+
+ai:
+  provider: ${AI_PROVIDER:gemini}
+  gemini:
+    api-key: ${GEMINI_API_KEY:demo-key}
+    url: https://generativelanguage.googleapis.com/v1beta
+    model: gemini-2.0-flash
+  openai:
+    api-key: ${OPENAI_API_KEY:demo-key}
+    model: gpt-4o-mini
+    base-url: https://api.openai.com/v1
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
