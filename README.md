@@ -1,3 +1,8 @@
+use these credential for login
+Email: admin@interviewprep.com
+Password: admin123
+
+
 #  AI-Powered Interview Preparation Platform
 
 <div align="center">
