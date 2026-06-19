@@ -1,16 +1,15 @@
 # Backend Dockerfile - Multi-stage build with layered JARs
 # Stage 1: Build
-FROM eclipse-temurin:21-jdk AS builder
+FROM maven:3.9.9-eclipse-temurin-21-alpine AS builder
 WORKDIR /app
 
-# Copy Maven wrapper and pom.xml first (cache dependencies)
-COPY .mvn/ .mvn/
-COPY mvnw pom.xml ./
-RUN chmod +x mvnw && ./mvnw dependency:go-offline -B
+# Copy pom.xml and download dependencies (cache layer)
+COPY pom.xml ./
+RUN mvn dependency:go-offline -B
 
 # Copy source and build
 COPY src ./src
-RUN ./mvnw package -DskipTests -B
+RUN mvn clean package -DskipTests -B
 
 # Extract layers for optimal caching
 RUN java -Djarmode=layertools -jar target/*.jar extract
