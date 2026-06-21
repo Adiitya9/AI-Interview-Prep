@@ -12,15 +12,13 @@ COPY src ./src
 RUN mvn clean package -DskipTests -B
 
 # Extract layers for optimal caching
-RUN java -Djarmode=layertools -jar target/*.jar extract
+RUN java -Djarmode=layertools -jar target/*.jar extract \
+    && mkdir -p dependencies spring-boot-loader snapshot-dependencies application \
+    && touch dependencies/dummy spring-boot-loader/dummy snapshot-dependencies/dummy application/dummy
 
 # Stage 2: Runtime
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-
-# Create non-root user
-RUN addgroup -S spring && adduser -S spring -G spring
-USER spring
 
 # Copy layers in order of change frequency (least → most)
 COPY --from=builder /app/dependencies/ ./
