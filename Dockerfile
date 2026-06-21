@@ -26,7 +26,7 @@ COPY --from=builder /app/spring-boot-loader/ ./
 COPY --from=builder /app/snapshot-dependencies/ ./
 COPY --from=builder /app/application/ ./
 
-EXPOSE 10000
+EXPOSE 8080
 
 ENTRYPOINT ["java", \
   "-XX:MaxRAMPercentage=75.0", \
