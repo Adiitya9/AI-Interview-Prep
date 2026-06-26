@@ -8,6 +8,6 @@ RUN mvn clean package -DskipTests -B
 
 FROM eclipse-temurin:21-jre
 WORKDIR /app
-COPY --from=builder /app/target/interview-prep-backend-*.jar app.jar
+COPY --from=builder /app/target/interview-prep-backend-1.0.0.jar app.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-XX:+UseG1GC", "-XX:MaxRAMPercentage=75.0", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
