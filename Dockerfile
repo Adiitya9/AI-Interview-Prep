@@ -11,24 +11,14 @@ RUN mvn dependency:go-offline -B
 COPY backend/src ./src
 RUN mvn clean package -DskipTests -B
 
-# Extract layers for optimal caching
-RUN java -Djarmode=layertools -jar target/*.jar extract \
-    && mkdir -p dependencies spring-boot-loader snapshot-dependencies application \
-    && touch dependencies/dummy spring-boot-loader/dummy snapshot-dependencies/dummy application/dummy
-
 # Stage 2: Runtime
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
-
-# Copy layers in order of change frequency
-COPY --from=builder /app/dependencies/ ./
-COPY --from=builder /app/spring-boot-loader/ ./
-COPY --from=builder /app/snapshot-dependencies/ ./
-COPY --from=builder /app/application/ ./
+COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE 8080
 
 ENTRYPOINT ["java", \
   "-XX:MaxRAMPercentage=75.0", \
   "-Djava.security.egd=file:/dev/./urandom", \
-  "org.springframework.boot.loader.launch.JarLauncher"]
+  "-jar", "app.jar"]
