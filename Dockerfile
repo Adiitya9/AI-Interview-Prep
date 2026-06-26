@@ -2,6 +2,7 @@
 # Stage 1: Build
 FROM maven:3.9.9-eclipse-temurin-21-alpine AS builder
 WORKDIR /app
+ENV MAVEN_OPTS="-Xmx350m -XX:+UseSerialGC"
 
 # Copy pom.xml from backend and download dependencies
 COPY backend/pom.xml ./

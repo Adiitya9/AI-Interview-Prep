@@ -1,0 +1,12 @@
+.git
+.github
+.vscode
+.idea
+backend/target
+backend/classes
+frontend/node_modules
+frontend/dist
+node_modules
+target
+*.log
+*.env
