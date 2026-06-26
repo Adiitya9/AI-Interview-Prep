@@ -1,14 +1,13 @@
-FROM maven:3.9-eclipse-temurin-21-alpine AS builder
+FROM maven:3.9-eclipse-temurin-21 AS builder
 WORKDIR /app
-ENV MAVEN_OPTS="-Xmx300m -XX:+UseSerialGC -XX:+TieredCompilation"
+ENV MAVEN_OPTS="-Xmx512m"
 COPY backend/pom.xml .
-RUN mvn dependency:go-offline -B 2>&1 | grep -E "SUCCESS|ERROR|FAILURE" || true
+RUN mvn dependency:go-offline -B
 COPY backend/src ./src
-RUN mvn clean package -DskipTests -B -q
+RUN mvn clean package -DskipTests -B
 
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:21-jre
 WORKDIR /app
-RUN apk add --no-cache ca-certificates
 COPY --from=builder /app/target/interview-prep-backend-*.jar app.jar
 EXPOSE 8080
-CMD ["java", "-XX:+UseG1GC", "-XX:MaxRAMPercentage=75.0", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-XX:+UseG1GC", "-XX:MaxRAMPercentage=75.0", "-Djava.security.egd=file:/dev/./urandom", "-jar", "app.jar"]
