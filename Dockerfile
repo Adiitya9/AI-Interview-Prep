@@ -1,9 +1,9 @@
 FROM maven:3.9-eclipse-temurin-21 AS builder
 WORKDIR /app
 ENV MAVEN_OPTS="-Xmx512m"
-COPY backend/pom.xml .
+COPY pom.xml .
 RUN mvn dependency:go-offline -B
-COPY backend/src ./src
+COPY src ./src
 RUN mvn clean package -DskipTests -B
 
 FROM eclipse-temurin:21-jre
