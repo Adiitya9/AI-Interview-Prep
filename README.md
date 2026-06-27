@@ -1,9 +1,14 @@
-use these credential for login
-Email: admin@interviewprep.com
-Password: admin123
+use these credentials to login:
+- Email: admin@interviewprep.com
+- Password: admin123
 
+---
 
-#  AI-Powered Interview Preparation Platform
+# 🚀 AI Interview Prep - Master Your Technical Interviews
+
+Welcome to **AI Interview Prep**, your all-in-one platform for crushing technical interviews. Whether you're preparing for your first dev role or aiming to land that dream position at a top tech company, this platform has everything you need.
+
+Built with modern technologies and powered by AI, it's designed to help you practice, learn, and get confidence before the real interview.
 
 <div align="center">
 
@@ -12,442 +17,235 @@ Password: admin123
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Material UI](https://img.shields.io/badge/MUI-5-0081CB?style=for-the-badge&logo=mui&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-
-**A comprehensive, production-ready platform that leverages AI to help developers ace their technical interviews.**
-
-[Features](#-features) • [Architecture](#-architecture) • [Getting Started](#-getting-started) • [API Docs](#-api-documentation) • [Deployment](#-deployment)
 
 </div>
 
 ---
 
-## 📋 Table of Contents
+## ✨ What Can You Do Here?
 
-- [Features](#-features)
-- [Architecture](#-architecture)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-- [Environment Variables](#-environment-variables)
-- [API Documentation](#-api-documentation)
-- [Database Design](#-database-design)
-- [Deployment](#-deployment)
-- [Testing](#-testing)
-- [Project Structure](#-project-structure)
-- [Contributing](#-contributing)
+### 📄 **Upload & Analyze Your Resume**
+Wondering if your resume is ATS-friendly? Upload your PDF and get an instant ATS score, see which technical skills you have, and get suggestions on what's missing. It's like having a career coach review your resume in seconds.
 
----
+### 💡 **Practice Interview Questions**
+Pick a domain (Java, Spring Boot, React, SQL, DSA, System Design), select a difficulty level, and get AI-generated interview questions with detailed answers. Perfect for brushing up on the fundamentals.
 
-## ✨ Features
+### 🎤 **Have a Real Mock Interview**
+This is the big one. Have a real-time conversation with AI acting as your interviewer. You can speak or type, the AI will ask follow-up questions, and you'll get scored on each answer with honest feedback. It's like having a mock interview partner available 24/7.
 
-### 🔐 Authentication & Authorization
-- JWT-based stateless authentication
-- Role-based access control (Student / Admin)
-- Secure password hashing (BCrypt)
-- Forgot password flow
+### 🔍 **See What Skills You're Missing**
+Paste a job description and let the platform compare it with your resume. It'll show you what you need to learn, what you're already good at, and give you a roadmap to bridge the gap.
 
-### 📊 Smart Dashboard
-- Interview statistics & score tracking
-- Skill progress visualization
-- Recommended topics engine
-- Recent activity timeline
-
-### 📄 AI Resume Analyzer
-- PDF resume upload & text extraction
-- Automated ATS (Applicant Tracking System) scoring
-- Technical skills identification
-- Missing skills detection
-- Personalized improvement suggestions
-
-### 💡 Interview Question Generator
-- 6 domains: Java, Spring Boot, React, SQL, DSA, System Design
-- 3 difficulty levels: Easy, Medium, Hard
-- AI-generated questions with detailed answers & explanations
-- Customizable question count (5-30)
-
-### 🎤 AI Mock Interview
-- Real-time conversational interview experience
-- Voice input support (Web Speech API)
-- AI evaluates answers and provides per-question scoring (0-10)
-- Detailed feedback with strengths & improvements
-- Comprehensive final interview report
-
-### 🔍 Skill Gap Analysis
-- Compare your resume against any job description
-- Match percentage calculation
-- Personalized learning roadmap with time estimates
-- Resource recommendations per skill
-
-### 📈 Progress Tracker
-- Interview score trends over time
-- Domain-wise performance analytics
-- Daily/weekly progress reports
-- Interactive charts & visualizations
-
-### 🛡️ Admin Panel
-- User management (CRUD)
-- Platform analytics dashboard
-- AI API usage monitoring
+### 📊 **Track Your Progress**
+Watch yourself improve over time. See how your interview scores trend, what domains you're getting better at, and celebrate your wins with interactive charts and reports.
 
 ---
 
-## 🏗 Architecture
+## 🏗️ How It Works (Under the Hood)
+
+The platform is split into two parts:
+
+1. **Backend (Spring Boot)** — Handles all the heavy lifting: user authentication, resume parsing, question generation, AI integration, and storing your progress
+2. **Frontend (React)** — Beautiful, interactive UI where you do all the interviewing, uploading, and tracking
+
+They talk to each other via REST APIs. The backend connects to Google's Gemini AI (or OpenAI if you prefer) to generate questions and evaluate your answers.
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    Frontend (React 18)                   │
-│          Material UI • React Router • Axios              │
-│              Port 5173 (dev) / 80 (prod)                │
-└───────────────────────┬─────────────────────────────────┘
-                        │ REST API (JSON)
-                        ▼
-┌─────────────────────────────────────────────────────────┐
-│                 Backend (Spring Boot 3.5)                │
-│                                                         │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐              │
-│  │Controller│→ │ Service  │→ │Repository│→ MySQL        │
-│  └──────────┘  └────┬─────┘  └──────────┘              │
-│                     │                                    │
-│                     ▼                                    │
-│              ┌─────────────┐                            │
-│              │  AI Service │→ Gemini / OpenAI API       │
-│              └─────────────┘                            │
-│                                                         │
-│  Security: JWT Filter Chain (Spring Security 6)         │
-│  Port 8080                                              │
-└─────────────────────────────────────────────────────────┘
+Your Browser (React App)
+        ↓ (REST API)
+    Spring Boot Server
+        ↓ (PDF parsing, AI calls, Database)
+    MySQL Database + AI APIs
 ```
-
-### Design Patterns
-- **MVC Architecture** — Clear separation of concerns
-- **Layered Architecture** — Controller → Service → Repository
-- **DTO Pattern** — Request/Response DTOs, never expose entities
-- **Strategy Pattern** — Swappable AI providers (Gemini/OpenAI)
-- **Builder Pattern** — Lombok @Builder for entities and DTOs
-- **Global Exception Handling** — @RestControllerAdvice
 
 ---
 
-## 🛠 Tech Stack
+## 🛠️ What's Inside?
 
-| Layer | Technology | Version |
-|-------|-----------|---------|
-| **Backend** | Java | 21 (LTS) |
-| | Spring Boot | 3.5.15 |
-| | Spring Security | 6.x |
-| | Spring Data JPA | 3.x |
-| | JJWT | 0.13.0 |
-| | Apache PDFBox | 3.0.3 |
-| | springdoc-openapi | 2.8.5 |
-| | Lombok | Latest |
-| **Frontend** | React | 18.3.x |
-| | Material UI | 5.16.x |
-| | React Router | 6.26.x |
-| | Axios | 1.7.x |
-| | Recharts | 2.15.x |
-| | Framer Motion | 11.x |
-| **Database** | MySQL | 8.0 |
-| **AI** | Google Gemini API | 2.0 Flash |
-| | OpenAI API | GPT-4o-mini |
-| **DevOps** | Docker | Multi-stage |
-| | GitHub Actions | CI/CD |
-| | Nginx | Alpine |
+| Part | Tech | Why? |
+|------|------|------|
+| **Backend** | Java 21 + Spring Boot 3.5 | Fast, reliable, production-ready |
+| **Frontend** | React 18 + Material UI | Beautiful, responsive, smooth UX |
+| **Database** | MySQL 8.0 | Robust, familiar, scales well |
+| **AI** | Google Gemini API | Free tier, super powerful |
+| **Deployment** | Docker + Railway | One-click deploy, always online |
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Get Started in 2 Minutes
 
-### Prerequisites
+### Option 1: Live Version (Easiest)
+Just visit: **https://adiitya9.github.io/AI-Interview-Prep/**
 
-- **Java 21** — [Download](https://adoptium.net/)
-- **Node.js 20+** — [Download](https://nodejs.org/)
-- **MySQL 8.0** — [Download](https://dev.mysql.com/downloads/) or use Docker
-- **Maven 3.9+** — [Download](https://maven.apache.org/) (or use the included wrapper `mvnw`)
-- **AI API Key** — [Gemini (free)](https://aistudio.google.com/apikey) or [OpenAI](https://platform.openai.com/api-keys)
+No setup needed. Register, log in, and start practicing.
 
-### Quick Start (Local Development)
+### Option 2: Run Locally
 
-#### 1. Clone the repository
-```bash
-git clone https://github.com/yourusername/interview-prep-platform.git
-cd interview-prep-platform
-```
+**Requirements:**
+- Java 21
+- Node.js 20+
+- (Optional) Docker
 
-#### 2. Set up the database
-```bash
-# Option A: Using Docker (recommended)
-docker run -d --name interview-mysql \
-  -e MYSQL_ROOT_PASSWORD=root \
-  -e MYSQL_DATABASE=interview_prep_db \
-  -p 3306:3306 \
-  mysql:8.0
+**Steps:**
 
-# Option B: Using local MySQL
-mysql -u root -p
-CREATE DATABASE interview_prep_db;
-```
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/Adiitya9/AI-Interview-Prep.git
+   cd AI-Interview-Prep
+   ```
 
-#### 3. Configure environment
-```bash
-# Backend
-cd backend
-cp src/main/resources/application.yml src/main/resources/application-local.yml
-# Edit application-local.yml with your database and AI API key settings
-```
+2. **Get an AI API key**
+   - Free: Go to [Google AI Studio](https://aistudio.google.com/apikey) and grab a Gemini key
+   - Copy your key, you'll need it in the next step
 
-#### 4. Start the backend
+3. **Create `.env` file**
+   ```bash
+   cp .env.example .env
+   ```
+   Edit `.env` and add your Gemini API key:
+   ```
+   GEMINI_API_KEY=your_key_here
+   ```
+
+4. **Start everything with Docker**
+   ```bash
+   docker compose up
+   ```
+   Or run manually:
+   - **Backend**: `cd backend && ./mvnw spring-boot:run`
+   - **Frontend**: `cd frontend && npm install && npm run dev`
+
+5. **Open in browser**
+   - Frontend: http://localhost:5173
+   - API Docs: http://localhost:8080/swagger-ui.html
+
+6. **Test it out**
+   - Register a new account, OR
+   - Use the default admin account above
+
+---
+
+## 🔐 Auth & Security
+
+- **JWT tokens** keep you logged in securely
+- **Role-based access** — Students get the practice features, Admins get the dashboard
+- **Passwords are hashed** — We never store plain text
+- **CORS enabled** — Safe API access from the frontend
+
+---
+
+## 📊 Features Breakdown
+
+| Feature | What It Does |
+|---------|------------|
+| **Dashboard** | See your stats: total interviews taken, average score, skill breakdown |
+| **Resume Analyzer** | Upload PDF → Get ATS score, skills detected, missing skills, tips to improve |
+| **Question Generator** | Pick topic & level → Get 5-30 questions with answers |
+| **Mock Interview** | Real interview simulation with AI, voice support, scoring & feedback |
+| **Skill Gap Analysis** | Paste job description → See what skills you need to learn |
+| **Progress Tracker** | Charts showing your improvement over time |
+| **Admin Panel** | See how many users signed up, manage accounts, view analytics |
+
+---
+
+## 🗄️ The Database
+
+We store everything you need to track your journey:
+- **Your profile** — Name, email, phone, role
+- **Resumes** — PDFs you upload + analysis results
+- **Interviews** — Every mock interview session, questions asked, your answers, scores
+- **Progress** — Daily records of your interviews and scores
+- **Skills** — What you're good at, what you need to learn
+
+---
+
+## 🌐 Deploy It Yourself
+
+Want to host your own version?
+
+### On Railway (Easiest)
+1. Fork this repo on GitHub
+2. Go to [Railway.app](https://railway.app)
+3. Click "New Project" → "Deploy from GitHub"
+4. Select this repo
+5. Add your Gemini API key to the environment variables
+6. Done! Your app is live in minutes
+
+### On AWS EC2
+1. Launch an EC2 instance (Ubuntu/Amazon Linux)
+2. Install Docker
+3. Clone this repo
+4. Run `docker compose up`
+5. Set up a domain name + SSL certificate (optional but recommended)
+
+---
+
+## 🧪 Tests
+
+The backend has solid test coverage:
+
 ```bash
 cd backend
-./mvnw spring-boot:run -Dspring-boot.run.profiles=dev
-# Server starts at http://localhost:8080
-# Swagger UI: http://localhost:8080/swagger-ui.html
-```
-
-#### 5. Start the frontend
-```bash
-cd frontend
-npm install
-npm run dev
-# App opens at http://localhost:5173
-```
-
-### Quick Start (Docker Compose)
-
-```bash
-# Copy and configure environment
-cp .env.example .env
-# Edit .env with your API keys
-
-# Start all services
-docker compose up -d
-
-# App: http://localhost
-# API: http://localhost:8080
-# Swagger: http://localhost:8080/swagger-ui.html
-```
-
-### Default Admin Credentials
-```
-Email: admin@interviewprep.com
-Password: admin123
-```
-
----
-
-## 🔑 Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `DB_USERNAME` | MySQL username | `root` |
-| `DB_PASSWORD` | MySQL password | `root` |
-| `JWT_SECRET` | JWT signing key (min 64 chars) | Auto-generated |
-| `AI_PROVIDER` | AI backend: `gemini` or `openai` | `gemini` |
-| `GEMINI_API_KEY` | Google Gemini API key | — |
-| `OPENAI_API_KEY` | OpenAI API key | — |
-
----
-
-## 📖 API Documentation
-
-Interactive API documentation is available via **Swagger UI** when the backend is running:
-
-- **Swagger UI**: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
-- **OpenAPI JSON**: [http://localhost:8080/v3/api-docs](http://localhost:8080/v3/api-docs)
-
-### Key API Endpoints
-
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `POST` | `/api/auth/register` | Register new user | No |
-| `POST` | `/api/auth/login` | Login & get JWT | No |
-| `POST` | `/api/auth/forgot-password` | Request password reset | No |
-| `GET` | `/api/dashboard` | Get dashboard data | JWT |
-| `POST` | `/api/resume/upload` | Upload & analyze resume | JWT |
-| `GET` | `/api/resume` | Get user's resumes | JWT |
-| `POST` | `/api/questions/generate` | Generate interview questions | JWT |
-| `POST` | `/api/interview/start` | Start mock interview | JWT |
-| `POST` | `/api/interview/answer` | Submit answer for evaluation | JWT |
-| `POST` | `/api/interview/{id}/complete` | Complete & get report | JWT |
-| `POST` | `/api/skill-gap/analyze` | Analyze skill gap | JWT |
-| `GET` | `/api/progress` | Get progress data | JWT |
-| `GET` | `/api/admin/users` | List all users | Admin |
-| `GET` | `/api/admin/analytics` | Platform analytics | Admin |
-
----
-
-## 🗃 Database Design
-
-### Entity-Relationship Diagram
-
-The platform uses **10 tables** with the following relationships:
-
-| Table | Description | Key Relationships |
-|-------|-------------|-------------------|
-| `users` | User accounts | Has roles, resumes, interviews |
-| `roles` | STUDENT, ADMIN | Many-to-many with users |
-| `resumes` | Uploaded resumes & analysis | Belongs to user |
-| `interviews` | Mock interview sessions | Has questions, result |
-| `interview_questions` | Individual questions | Belongs to interview |
-| `interview_results` | Final interview reports | One-to-one with interview |
-| `skill_analysis` | Skill gap comparisons | Belongs to user |
-| `progress_reports` | Daily/weekly progress | Belongs to user |
-| `job_descriptions` | Saved job descriptions | Belongs to user |
-| `ai_logs` | AI API call logs | Belongs to user |
-
----
-
-## 🐳 Deployment
-
-### Docker Compose (Recommended)
-
-```bash
-# Production deployment
-cp .env.example .env
-# Edit .env with production values
-
-docker compose up -d --build
-```
-
-### AWS EC2 Deployment
-
-#### 1. Launch EC2 Instance
-- AMI: Amazon Linux 2023 or Ubuntu 22.04
-- Instance type: t3.medium (minimum)
-- Security group: Open ports 80, 443, 22
-
-#### 2. Install Docker
-```bash
-# Amazon Linux 2023
-sudo yum install -y docker
-sudo systemctl start docker
-sudo systemctl enable docker
-sudo usermod -aG docker $USER
-
-# Install Docker Compose
-sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-```
-
-#### 3. Deploy
-```bash
-# Clone and configure
-git clone https://github.com/yourusername/interview-prep-platform.git
-cd interview-prep-platform
-cp .env.example .env
-nano .env  # Configure production values
-
-# Start services
-docker compose up -d --build
-
-# Verify
-docker compose ps
-curl http://localhost:8080/actuator/health
-```
-
-#### 4. Set up CI/CD
-Configure these GitHub secrets:
-- `DOCKER_USERNAME`, `DOCKER_PASSWORD`
-- `EC2_HOST`, `EC2_USERNAME`, `EC2_SSH_KEY`
-
----
-
-## 🧪 Testing
-
-### Backend Tests
-```bash
-cd backend
-
-# Run all tests
 ./mvnw test
-
-# Run specific test class
-./mvnw test -Dtest=AuthServiceImplTest
-
-# Run with coverage
-./mvnw test jacoco:report
-# Report: target/site/jacoco/index.html
 ```
 
-### Test Coverage
-| Layer | Test Type | Framework |
-|-------|-----------|-----------|
-| Service | Unit Tests | JUnit 5 + Mockito |
-| Security | Unit Tests | JUnit 5 |
-| Controller | Integration | Spring MockMvc |
-| Repository | Integration | @DataJpaTest + H2 |
+Tests include:
+- Authentication & authorization
+- Resume analysis logic
+- Question generation
+- Mock interview scoring
+- API endpoint checks
 
 ---
 
-## 📁 Project Structure
+## 🤔 FAQ
 
-```
-interview-prep-platform/
-├── backend/
-│   ├── src/main/java/com/interviewprep/
-│   │   ├── config/          # OpenAPI, Web, AI configs
-│   │   ├── controller/      # REST controllers (8)
-│   │   ├── dto/
-│   │   │   ├── request/     # Request DTOs
-│   │   │   └── response/    # Response DTOs
-│   │   ├── entity/          # JPA entities (10)
-│   │   ├── enums/           # Domain, Difficulty, etc.
-│   │   ├── exception/       # Global exception handler
-│   │   ├── repository/      # JPA repositories (10)
-│   │   ├── security/        # JWT + Spring Security
-│   │   ├── service/
-│   │   │   └── impl/        # Service implementations
-│   │   └── util/            # PDF extractor, helpers
-│   ├── src/main/resources/
-│   │   └── application.yml
-│   ├── src/test/java/
-│   ├── pom.xml
-│   └── Dockerfile
-├── frontend/
-│   ├── src/
-│   │   ├── api/             # Axios API clients
-│   │   ├── components/
-│   │   │   ├── common/      # Reusable components
-│   │   │   └── layout/      # App layout, sidebar
-│   │   ├── contexts/        # Auth context
-│   │   ├── pages/           # All page components
-│   │   │   ├── auth/
-│   │   │   ├── dashboard/
-│   │   │   ├── resume/
-│   │   │   ├── interview/
-│   │   │   ├── questions/
-│   │   │   ├── skillgap/
-│   │   │   ├── progress/
-│   │   │   ├── admin/
-│   │   │   └── profile/
-│   │   ├── theme/           # MUI theme config
-│   │   └── utils/
-│   ├── index.html
-│   ├── vite.config.js
-│   ├── package.json
-│   ├── nginx.conf
-│   └── Dockerfile
-├── docker-compose.yml
-├── .github/workflows/ci-cd.yml
-├── .env.example
-├── .gitignore
-└── README.md
-```
+**Q: Is it really free?**
+A: Yes! The platform is free. Gemini API has a free tier that's super generous. If you hit the limit, you can use OpenAI or your own API keys.
+
+**Q: Can I use this for interview prep?**
+A: Absolutely. This is designed exactly for that. Practice questions, get feedback, improve.
+
+**Q: How accurate is the AI scoring?**
+A: Pretty accurate. The AI evaluates based on keywords, concepts, depth of explanation, and structure. It's not perfect but it's honest feedback.
+
+**Q: Can multiple people use this?**
+A: Yes! Anyone can sign up. If you deploy it, each person gets their own account.
+
+**Q: Is my data safe?**
+A: Yes. Passwords are hashed, API calls are encrypted, and your resumes are stored securely.
 
 ---
 
-## 🤝 Contributing
+## 📚 API Docs
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+When the backend is running, check out:
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **OpenAPI JSON**: http://localhost:8080/v3/api-docs
+
+All endpoints are documented with request/response examples.
 
 ---
+
+## 🙌 Made With ❤️
+
+This project was built to help developers like you ace interviews. If it helps you land your dream job, that's the best reward.
+
+**Built by:** A developer who's been in your shoes
+**For:** Everyone preparing for technical interviews
+
+---
+
+## 📝 License
+
+Open source. Use it, modify it, share it. All good.
 
 ---
 
 <div align="center">
 
+**Ready to crush your interviews?** 
+
+[Get Started](https://adiitya9.github.io/AI-Interview-Prep/) • [GitHub](https://github.com/Adiitya9/AI-Interview-Prep) • [Report Bug](https://github.com/Adiitya9/AI-Interview-Prep/issues)
 
 </div>
