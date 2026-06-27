@@ -9,6 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+      if (sessionStorage.redirect) {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        var match = redirect.match(/\/AI-Interview-Prep\/(.*)/);
+        if (match) {
+          history.replaceState(null, null, match[1]);
+        }
+      }
+    </script>
     <script type="module" crossorigin src="/AI-Interview-Prep/assets/index-CTsWNkUb.js"></script>
     <link rel="stylesheet" crossorigin href="/AI-Interview-Prep/assets/index-D7R1IvAe.css">
   </head>
