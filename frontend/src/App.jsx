@@ -24,6 +24,7 @@ import MockInterviewPage from './pages/interview/MockInterviewPage';
 import SkillGapPage from './pages/skillgap/SkillGapPage';
 import ProgressPage from './pages/progress/ProgressPage';
 import ProfilePage from './pages/profile/ProfilePage';
+import NotFoundPage from './pages/NotFoundPage';
 
 // Admin Pages
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
@@ -75,8 +76,12 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: '/404',
+    element: <NotFoundPage />,
+  },
+  {
     path: '*',
-    element: <Navigate to="/dashboard" replace />,
+    element: <NotFoundPage />,
   },
 ], {
   basename: import.meta.env.BASE_URL
