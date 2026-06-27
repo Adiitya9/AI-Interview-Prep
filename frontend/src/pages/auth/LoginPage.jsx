@@ -47,10 +47,12 @@ const LoginPage = () => {
       setError('');
       setIsSubmitting(true);
       await login(email, password);
-      navigate(from, { replace: true });
+      // Give auth state time to update before navigating
+      setTimeout(() => {
+        navigate(from, { replace: true });
+      }, 500);
     } catch (err) {
       setError(err.message || 'Failed to login. Please check your credentials.');
-    } finally {
       setIsSubmitting(false);
     }
   };
