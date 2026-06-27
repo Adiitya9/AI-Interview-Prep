@@ -4,7 +4,7 @@ use these credentials to login:
 
 ---
 
-# 🎯 AI Interview Prep
+# AI Interview Prep
 
 Master technical interviews with AI-powered practice, resume analysis, and real-time feedback.
 
@@ -21,22 +21,22 @@ Master technical interviews with AI-powered practice, resume analysis, and real-
 
 ---
 
-## 🚀 What Can You Do?
+## What Can You Do?
 
-✅ **Upload Your Resume** → Get ATS score & skill analysis  
-✅ **Practice Questions** → Pick domain & difficulty level  
-✅ **Mock Interviews** → Chat with AI interviewer, get scored & feedback  
-✅ **Skill Gap Analysis** → Paste job description, see what you're missing  
-✅ **Track Progress** → Watch your scores improve over time  
+- Upload Your Resume - Get ATS score & skill analysis
+- Practice Questions - Pick domain & difficulty level
+- Mock Interviews - Chat with AI interviewer, get scored & feedback
+- Skill Gap Analysis - Paste job description, see what you're missing
+- Track Progress - Watch your scores improve over time
 
 ---
 
-## ⚡ Quick Start
+## Quick Start
 
 ### Live Version (No Setup)
-Just go here: **https://adiitya9.github.io/AI-Interview-Prep/**
+Just go here: https://adiitya9.github.io/AI-Interview-Prep/
 
-Register → Practice → Improve. Done.
+Register, practice, improve. Done.
 
 ### Run Locally
 
@@ -75,92 +75,102 @@ Test with the admin account above.
 
 ---
 
-## 🏗️ How It Works
+## How It Works
 
 ```
-Frontend (React) ↔ Backend (Spring Boot) ↔ MySQL + AI APIs
+Frontend (React) ← API → Backend (Spring Boot) ← Database/AI → MySQL + Gemini
 ```
 
-- **Frontend:** React + Material UI (beautiful UI)
-- **Backend:** Java + Spring Boot (handles everything)
+- **Frontend:** React with Material UI (beautiful, responsive interface)
+- **Backend:** Java with Spring Boot (handles all business logic)
 - **Database:** MySQL (stores your data)
-- **AI:** Google Gemini (generates questions & feedback)
+- **AI:** Google Gemini (generates questions and evaluates answers)
 
 ---
 
-## 📋 Features
+## Features
 
-| Feature | What It Does |
+| Feature | Description |
 |---------|------------|
-| 📊 Dashboard | See your stats & progress |
-| 📄 Resume Analyzer | Upload PDF, get ATS score & skills |
-| 💡 Question Generator | Generate questions by topic & level |
-| 🎤 Mock Interview | Real interview with AI, scoring, feedback |
-| 🔍 Skill Gap | Compare resume vs job description |
-| 📈 Progress Tracker | Charts showing your improvement |
-| 👨‍💼 Admin Panel | Manage users & view analytics |
+| Dashboard | View your stats and progress |
+| Resume Analyzer | Upload PDF, get ATS score and skill analysis |
+| Question Generator | Generate interview questions by topic and difficulty |
+| Mock Interview | Real-time interview with AI, scoring and feedback |
+| Skill Gap Analysis | Compare your resume against job descriptions |
+| Progress Tracker | Charts showing your improvement over time |
+| Admin Panel | Manage users and view platform analytics |
 
 ---
 
-## 🔐 Security
+## Security
 
-- JWT authentication (secure login)
-- Role-based access (Student/Admin)
-- Password hashing (BCrypt)
-- CORS enabled for frontend
+- JWT authentication for secure login
+- Role-based access control (Student/Admin)
+- Password hashing with BCrypt
+- CORS enabled for frontend communication
 
 ---
 
-## 🌐 Deploy It
+## Deploy It
 
 ### Railway (Easiest)
 1. Fork the repo
-2. Go to [Railway.app](https://railway.app)
-3. "New Project" → "Deploy from GitHub"
-4. Pick this repo
-5. Add Gemini API key to environment
-6. Done! Live in minutes
+2. Go to https://railway.app
+3. Click "New Project" then "Deploy from GitHub"
+4. Select this repository
+5. Add your Gemini API key as an environment variable
+6. It's live in minutes
 
 ### AWS EC2
-1. Launch Ubuntu/Amazon Linux instance
+1. Launch an Ubuntu or Amazon Linux instance
 2. Install Docker
-3. Clone repo → `docker compose up`
-4. Done!
+3. Clone the repo
+4. Run `docker compose up`
+5. Done
 
 ---
 
-## 📚 API Docs
+## API Documentation
 
-When backend is running:
-- Swagger: http://localhost:8080/swagger-ui.html
-- OpenAPI: http://localhost:8080/v3/api-docs
-
----
-
-## ❓ FAQ
-
-**Q: Is it free?**  
-A: Yes! Gemini has a free tier that's more than enough.
-
-**Q: Can I use it for interview prep?**  
-A: That's literally what it's for.
-
-**Q: Is my data safe?**  
-A: Yes. Passwords are hashed, data is encrypted.
-
-**Q: Can others sign up too?**  
-A: Yeah, multiple users can use the same instance.
+When the backend is running, access these:
+- Swagger UI: http://localhost:8080/swagger-ui.html
+- OpenAPI JSON: http://localhost:8080/v3/api-docs
 
 ---
 
-## 🙌 Credits
+## FAQ
 
-Built to help developers ace interviews. If you land that dream job, mission accomplished! 🎉
+**Q: Is it free?**
+A: Yes. Gemini has a generous free tier.
+
+**Q: Can I use this for interview prep?**
+A: That's exactly what it's designed for.
+
+**Q: Is my data safe?**
+A: Yes. Passwords are hashed and data is encrypted.
+
+**Q: Can multiple people use it?**
+A: Yes, each person gets their own account.
+
+**Q: How accurate is the AI scoring?**
+A: Pretty accurate. It evaluates based on keywords, concepts, and explanation depth.
+
+---
+
+## Built With
+
+- Java 21 and Spring Boot 3.5
+- React 18 with Material UI
+- MySQL 8.0 database
+- Google Gemini API for AI features
+- Docker for containerization
 
 ---
 
 <div align="center">
 
-**[Try Now](https://adiitya9.github.io/AI-Interview-Prep/)** • **[GitHub](https://github.com/Adiitya9/AI-Interview-Prep)**
+**Ready to ace your interviews?**
+
+[Try Now](https://adiitya9.github.io/AI-Interview-Prep/) | [View on GitHub](https://github.com/Adiitya9/AI-Interview-Prep)
 
 </div>
