@@ -12,7 +12,7 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
     const savedUrl = localStorage.getItem('VITE_API_URL');
-    config.baseURL = savedUrl || import.meta.env.VITE_API_URL || 'http://localhost:8080/api/v1';
+    config.baseURL = savedUrl || import.meta.env.VITE_API_URL || 'https://ai-interview-prep-production-02fc.up.railway.app/api/v1';
 
     const token = localStorage.getItem('token');
     if (token) {
